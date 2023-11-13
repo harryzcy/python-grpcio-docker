@@ -23,7 +23,7 @@ jobs:
 
       - name: Assert version
         if: env.GRPC_VERSION != env.EXPECTED_VERSION
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             core.setFailed('version check failed')
