@@ -1,9 +1,10 @@
-name: Docker Build and Test
+name: Build and Test
 
 on: [push, pull_request]
 
 jobs:
   build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
