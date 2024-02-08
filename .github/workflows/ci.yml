@@ -1,20 +1,22 @@
-name: Docker Build and Test
+name: Build and Test
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build -t python-grpcio .
 
       - name: Get grpc version
         run: |
-          echo "GRPC_VERSION=$(docker run -v "$(pwd)/tests/test.py":/app/test.py python-grpcio venv/bin/python test.py)" >> $GITHUB_ENV
-          echo "EXPECTED_VERSION=$(cat requirements.txt | grep grpcio | grep -oP '.*\b\K\d+\.\d+\.\d+\b')" >> $GITHUB_ENV
+          echo "GRPC_VERSION=$(docker run -v "$(pwd)/tests/test.py":/app/test.py python-grpcio venv/bin/python test.py)" >> "$GITHUB_ENV"
+          echo "EXPECTED_VERSION=$(grep grpcio < requirements.txt | grep -oP '.*\b\K\d+\.\d+\.\d+\b')" >> "$GITHUB_ENV"
 
       - name: Check grpc version
         run: |
