@@ -1,6 +1,5 @@
 {
   "extends": [
-    "config:recommended",
-    ":disableDependencyDashboard"
+    "github>harryzcy/renovate-config"
   ]
 }
