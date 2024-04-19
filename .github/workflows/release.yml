@@ -17,8 +17,8 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - uses: ncipollo/release-action@v1
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5 # v1
         with:
           name: Release ${{ github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -28,10 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: Set up tags
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
         env:
           IMAGE_NAME: harryzcy/python-grpcio
         with:
@@ -51,19 +51,19 @@ jobs:
             core.exportVariable('IMAGE_TAGS', tags.join(','))
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3
 
       - name: Login to DockerHub
-        uses: docker/login-action@v3
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5
         with:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7
