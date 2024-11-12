@@ -1,4 +1,4 @@
-FROM python:3.13.0-alpine3.20@sha256:9dbfed76969ce780f827f9e00e8454a04a6fbef753a478bc7586223e790defd0
+FROM python:3.13.0-alpine3.20@sha256:bbe8d3f60d8cd79dce5e74932cf07c3e3b9e739692d961c046f2a353b78dd4b2
 
 # checkov:skip=CKV_DOCKER_3:"Allow root user"
 # checkov:skip=CKV_DOCKER_2:"No healthcheck"
